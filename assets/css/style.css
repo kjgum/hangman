@@ -1,0 +1,60 @@
+body {
+	background-image: url(../images/background.jpg);
+	background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.header {
+	background-color: ;
+	padding: 10px;
+	margin-top: 20px;
+	
+	font-size: 90px;
+}
+
+.header1 {
+	font-family: 'Fredericka the Great', cursive;
+}
+
+.header2 {
+	font-family: 'Special Elite', cursive;
+}
+
+
+.textbox {
+	padding: 10px;
+	margin-top: 20px;
+	background-color: #ffffff;
+  opacity: 0.5;
+}
+
+.textbox p {
+	color: black;
+	font-family: 'Poiret One', cursive;
+}
+
+.textbox img {
+	padding: 10px;
+}
+
+h2 {
+	color: black;
+	font-family: 'Poiret One', cursive;
+}
+
+
+
+.footer {
+	background-color: #ffffff;
+  opacity: 0.5;
+}
+
+.footer text {
+	color: black;
+	font-size: 10px;
+	font-family: 'Poiret One', cursive;
+}
+
+.footer a {
+	color: black;
+}
