@@ -30,6 +30,13 @@ window.onload = function() {
 	// first word is ACCELERATE for testing purposes
 	var num = 0;
 	newWord(num);
+
+	var audio = new Audio('assets/images/holidayRoad.mp3');
+	audio.play();
+
+
+
+	
 	
 
 	function selectNewWord() {
@@ -75,17 +82,17 @@ window.onload = function() {
 	
 
 	function checkGuessed(userGuess) {
-		// Check to see if letter matches any letters in word
+		// see if letter matches any letters in word
 		check: {
 			for (var i=0; i<guessedLetters.length; i++) {
 				if (guessedLetters[i] == userGuess) {
-					document.querySelector(".info").innerHTML = "<h2>guess another letter</h2>";
+					document.querySelector(".info").innerHTML = "<p>guess another letter</p>";
 					break check;
 				}
 			}
 			for (var i=0; i<positions.length; i++) {
 				if (positions[i] == userGuess) {
-					document.querySelector(".info").innerHTML = "<h2>guess another letter</h2>";
+					document.querySelector(".info").innerHTML = "<p>guess another letter</p>";
 					break check;
 				}
 			}
@@ -134,6 +141,7 @@ window.onload = function() {
 			answerReset();
 			document.querySelector(".wins").innerHTML = wins;
 			document.querySelector(".hangman").innerHTML = '<img src="assets/images/youwon.png">';
+
 			
 		}
 		// guess reaches 0
