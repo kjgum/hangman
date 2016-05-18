@@ -1,8 +1,18 @@
 window.onload = function() {
 	
 	var userGuess;
-	var words = ["ACCELERATE", "ACCIDENT", "ASPHALT", "AUTOMOBILE", 
-										"AVENUE", "BICYCLE", "BOULEVARD", "BRAKES", "BUS"];
+	var words = ["ACCELERATE", "ACCIDENT", "ASPHALT", "AUTOMOBILE", "AVENUE", "BICYCLE", 
+								"BOULEVARD", "BRAKES", "BUS’", "CIRCLE", "CLUTCH", "CONSTRUCTION", 
+								"CARPOOL", "DETOUR", "DRIVE", "EMISSION", "EXHAUST", "EXIT", "EXPRESSWAY", 
+								"FAST", "FENDER", "FREEWAY", "FUEL", "GAS", "GEAR", "GPS", "GRIDLOCK", 
+								"HEADLIGHTS", "HYBRID", "INTERSECTION", "INTERSTATE", "IDLING", "LANE", 
+								"LICENSE", "LIGHTS", "MANUAL", "MAP", "MILE", "MERGE", "MOTOR", "MOTORCYCLE", 
+								"MPH", "OIL", "OVERPASS", "PARK", "PARKING", "PARKWAY", "PAVEMENT", "PEDAL", 
+								"PEDESTRIAN", "POLICE", "RAILROAD", "RAMP", "REGISTRATION", "REST", "REVERSE", 
+								"ROADWAY", "SAFETY", "SCENERY", "SEATBELT", "SHOULDER", "SIDEWALK", "SIGN", 
+								"SLOW", "SPEED", "STATE", "STOP", "STREET", "STEER", "TICKET", "TIRE", "TOLL", 
+								"TRAFFIC", "TRUCK", "TRANSPORTATION", "TUNNEL", "TURN", "UNDERPASS", "VEHICLE", 
+								"WARNING"];
 	var word = [];
 	var positions = [];
 	var guessedLetters = [];
@@ -11,21 +21,27 @@ window.onload = function() {
 	var losses;
 	var count = 0;
 
-	// inital wins
+	// inital
 	wins = 0;
 	losses = 0;
 	document.querySelector(".wins").innerHTML = wins;
 	document.querySelector(".losses").innerHTML = losses;
 
-	// Select the first word
+	// first word is ACCELERATE for testing purposes
 	var num = 0;
 	newWord(num);
+	
 
+	function selectNewWord() {
+		num = Math.floor((Math.random() * 80) + 1);
+		newWord(num);
+		console.log(words[num]);
+	}
 
 	
 
 	function newWord(num) {
-		// Set initial guesses
+		// set guesses
 		guesses = 6;
 		document.querySelector(".guesses").innerHTML = guesses;
 		// hangman picture
@@ -34,7 +50,7 @@ window.onload = function() {
 		positions = [];
 		guessedLetters = [];
 		document.querySelector(".letters-guessed").innerHTML = guessedLetters.join(" ");
-		// Set positions of intial word and display
+		// set positions of intial word and display
 		word = words[num].split("");
 		for (var i=0; i<word.length; i++) {
 			positions.push("_");
@@ -43,15 +59,15 @@ window.onload = function() {
 
 		document.onkeyup = function(event) {
 			// Reset non-letter and already-guessed
-			document.querySelector(".red").innerHTML = "";
-			// Get letter from player
+			document.querySelector(".info").innerHTML = "";
+			// get letter only
 			if (event.keyCode >= 65 && event.keyCode <= 90) {
 				userGuess = String.fromCharCode(event.keyCode).toUpperCase();
 				checkGuessed(userGuess);
 			} else {
-				document.querySelector(".red").innerHTML = "please press a letter";
+				document.querySelector(".info").innerHTML = "please press a letter";
 			}
-			// Check to see if player won or lost
+
 			checkWin();
 		}
 	}
@@ -63,13 +79,13 @@ window.onload = function() {
 		check: {
 			for (var i=0; i<guessedLetters.length; i++) {
 				if (guessedLetters[i] == userGuess) {
-					document.querySelector(".red").innerHTML = "<h2>guess another letter</h2>";
+					document.querySelector(".info").innerHTML = "<h2>guess another letter</h2>";
 					break check;
 				}
 			}
 			for (var i=0; i<positions.length; i++) {
 				if (positions[i] == userGuess) {
-					document.querySelector(".red").innerHTML = "<h2>guess another letter</h2>";
+					document.querySelector(".info").innerHTML = "<h2>guess another letter</h2>";
 					break check;
 				}
 			}
@@ -100,6 +116,7 @@ window.onload = function() {
 			// redisplay positions
 			document.querySelector(".positions").innerHTML = positions.join(" ");
 		}
+		checkWin();
 	}
 
 
@@ -112,63 +129,40 @@ window.onload = function() {
 					break winning;
 				}
 			}
-			// Update and display wins
+			// display wins
 			wins++;
+			answerReset();
 			document.querySelector(".wins").innerHTML = wins;
-			// Show answer
-			answer("c");
+			document.querySelector(".hangman").innerHTML = '<img src="assets/images/youwon.png">';
+			
 		}
-		// Check if guess reaches 0
+		// guess reaches 0
 		if (guesses == 0) {
-			answer("inc");
+			answerReset();
 			losses++;
 			document.querySelector(".losses").innerHTML = losses;
+			document.querySelector(".hangman").innerHTML = '<img src="assets/images/youlost.png">';
 		}
 	}
 
 
 
-	function answer(letter) {
+	function answer() {
 
-		// Show answer
-		document.querySelector(".response").innerHTML = letter + "orrect! it's " + words[num] + "!";
-		document.querySelector(".hangman").innerHTML = '<img src="assets/images/youwon.png">';
-
-		// Listen for key to reset
+		// key to reset
 		document.onkeyup = function(event) {
 			answerReset();
 		}
-		// Any key restarts game
-		document.querySelector(".left").addEventListener("click", function(){
-		    answerReset();
-		});
-		document.querySelector(".right").addEventListener("click", function(){
-		    answerReset();
-		});
-		// Listen for press to reset
+
 		document.querySelector(".guessLetter").addEventListener("click", function(){
 		    answerReset();
 		});
 	}
 
-		function selectNewWord() {
-		
-		var num = Math.floor((Math.random() * 9) + 1);
-		newWord(num);
-		// num++;
-		// // Keep selecting new words when available
-		// if (num < words.length) {
-		// 	// Select new word
-		// 	newWord(num);
-		// } else {
-		// 	// Reset num
-		// 	num = 0;
-		// 	newWord(num);
-		// }
-	}
+	
 
 	function answerReset() {
-		// Reset answer
+		// reset answer
 		document.querySelector(".response").innerHTML = "";
 
 		document.querySelector(".anykey").innerHTML = "";
@@ -179,24 +173,6 @@ window.onload = function() {
 
 
 }
-
-// var wordArray = [‘accelerate’, ‘accident’, ‘asphalt’, ‘automobile’, 
-// 										‘avenue’, ‘bicycle’, ‘boulevard’, ‘brakes’, ‘bus’, 
-// 										‘circle’, ‘clutch’, ‘construction’, ‘carpool’, ‘detour’, 
-// 										‘drive’, ‘emission’, ‘exhaust’, ‘exit’, ‘expressway’, ‘fast’, 
-// 										‘fender’, ‘freeway’, ‘fuel’, ‘gas’, ‘gear’, ‘gps’, ‘gridlock’, 
-// 										‘headlights’, ‘hybrid’, ‘intersection’, ‘ interstate’, 
-// 										‘idling’, ‘lane’, ‘license’, ‘lights’, ‘manual’, ‘map’, ‘mile’, 
-// 										‘merge’, ‘motor’, ‘motorcycle’, ‘mph’, ‘oil’, ‘overpass’, 
-// 										‘park’, ‘parking’, ‘parkway’, ‘pavement’, ‘pedal’, ‘pedestrian’, 
-// 										‘police’, ‘railroad’, ‘ramp’, ‘registration’, ‘rest’, ‘reverse’, 
-// 										‘roadway’, ‘safety’, ‘scenery’, ‘seatbelt’, ‘shoulder’, ‘sidewalk’, 
-// 										‘sign’, ‘slow’, ‘speed’, ‘state’, ‘stop’, ‘street’, ‘steer’, 
-// 										‘ticket’, ‘tire’, ‘toll’, ‘traffic’, ‘truck’, ‘transportation’, 
-// 										‘tunnel’, ‘turn’, ‘underpass’, ‘vehicle’, ‘warning’];
-
-
-
 
 
 
