@@ -4,14 +4,13 @@
 <meta charset="UTF-8">
     <title>Hangman</title>
  
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ 	<meta charset="utf-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Special+Elite|Fredericka+the+Great' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
-
-<link rel="stylesheet" href="assets/css/style.css">
- <script src="assets/javascript/game.js"></script> 
+	<link rel="stylesheet" href="assets/css/style.css">
+ 	<script src="assets/javascript/game.js"></script> 
 
 </head>
 <body>
@@ -29,29 +28,53 @@
 <div class="row">
 <div class="col-md-12">
 
-	<div class="col-md-5 col-md-offset-1 textbox img-rounded text-center">
-
-		<p><img src="http://hangman.doncolton.com/play/hang6.png"></p>
-<!-- 		<p><img src="http://hangman.doncolton.com/play/hang1.png"></p>
-		<p><img src="http://hangman.doncolton.com/play/hang2.png"></p>
-		<p><img src="http://hangman.doncolton.com/play/hang3.png"></p>
-		<p><img src="http://hangman.doncolton.com/play/hang4.png"></p>
-		<p><img src="http://hangman.doncolton.com/play/hang5.png"></p>
-		<p><img src="http://hangman.doncolton.com/play/hang6.png"></p>  -->
+	<div class="col-md-5 col-md-offset-1 textbox img-rounded text-center pic" style="height: 400px;">
 		
-	</div>
+		<!-- hangman image goes here -->
+		
+		<div class="hangman"></div>
+		<h2 class="red">press enter to start</h2>
+
+		<!-- <div class="media-input"></div> -->
+
+		<div class="answer">
+			<h2 class="response"></h2>
+		<div class="character"></div>
+			<h2 class="anykey"></h2>
+		</div>
+
+
+
+
+	</div><!-- close first textbox -->
 	
-	<div class="col-md-4 col-md-offset-1 textbox img-rounded text-center">
-		<div class="placeholder">---------</div>
+	<div class="col-md-4 col-md-offset-1 textbox img-rounded text-center">	
+				<h2>current word: </h2>
+				<h2 class="positions"></h2>
 	</div>
 
-	<div class="col-md-4 col-md-offset-1 textbox img-rounded text-center" style="height:200px;">
-			<h2>incorrect letters</h2>
-   		<br/>
-			<p class="guessedLetters"></p>
-	</div>
+	<div class="col-md-4 col-md-offset-1 textbox img-rounded text-center" style="height:100px;">
+				<h2>guessed letters: </h2>
+				<p class="letters-guessed"></p>
 
 	</div>
+
+	<div class="col-md-4 col-md-offset-1 textbox img-rounded text-center" style="height:125px;">
+		<div class="col-md-4">
+					<h2>wins:</h2>
+				<p class="wins"></p>
+			</div>
+			<div class="col-md-4">
+					<h2>losses:</h2>
+					<p class="losses"></p>
+			</div>
+			<div class="col-md-4">
+					<h2>guesses:</h2>
+					<p class="guesses"></p>
+			</div>
+	</div>
+
+</div>
 </div><!-- row2 -->
 
 <div class="navbar-fixed-bottom text-center footer">
