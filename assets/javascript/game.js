@@ -21,7 +21,7 @@ window.onload = function() {
 	var losses;
 	var count = 0;
 
-	// inital
+	// inital score
 	wins = 0;
 	losses = 0;
 	document.querySelector(".wins").innerHTML = wins;
@@ -56,7 +56,7 @@ window.onload = function() {
 		// clear positions and guesses
 		positions = [];
 		guessedLetters = [];
-		document.querySelector(".letters-guessed").innerHTML = guessedLetters.join(" ");
+		document.querySelector(".lettersGuessed").innerHTML = guessedLetters.join(" ");
 		// set positions of intial word and display
 		word = words[num].split("");
 		for (var i=0; i<word.length; i++) {
@@ -65,7 +65,7 @@ window.onload = function() {
 		document.querySelector(".positions").innerHTML = positions.join(" ");
 
 		document.onkeyup = function(event) {
-			// Reset non-letter and already-guessed
+			// reset  and already-guessed
 			document.querySelector(".info").innerHTML = "";
 			// get letter only
 			if (event.keyCode >= 65 && event.keyCode <= 90) {
@@ -86,13 +86,13 @@ window.onload = function() {
 		check: {
 			for (var i=0; i<guessedLetters.length; i++) {
 				if (guessedLetters[i] == userGuess) {
-					document.querySelector(".info").innerHTML = "<p>guess another letter</p>";
+					document.querySelector(".info").innerHTML = "guess another letter";
 					break check;
 				}
 			}
 			for (var i=0; i<positions.length; i++) {
 				if (positions[i] == userGuess) {
-					document.querySelector(".info").innerHTML = "<p>guess another letter</p>";
+					document.querySelector(".info").innerHTML = "guess another letter";
 					break check;
 				}
 			}
@@ -103,7 +103,7 @@ window.onload = function() {
 
 
 	function replacements(userGuess) {
-		// Check to see if letter matches any letters in word
+		// see if letter matches any letters in word
 		var replacements = 0;
 		for (var i=0; i<word.length; i++) {
 			if (word[i] == userGuess) {
@@ -118,13 +118,14 @@ window.onload = function() {
 			document.querySelector(".hangman").innerHTML = '<img src="assets/images/hang' + guesses + '.png">';
 			// display guessed letters
 			guessedLetters.push(userGuess);
-			document.querySelector(".letters-guessed").innerHTML = guessedLetters.join(" ");
+			document.querySelector(".lettersGuessed").innerHTML = guessedLetters.join(" ");
 		} else {
 			// redisplay positions
 			document.querySelector(".positions").innerHTML = positions.join(" ");
 		}
 		checkWin();
 	}
+
 
 
 
@@ -140,20 +141,29 @@ window.onload = function() {
 			wins++;
 			answerReset();
 			document.querySelector(".wins").innerHTML = wins;
-			document.querySelector(".hangman").innerHTML = '<img src="assets/images/youwon.png">';
-
-			
+			document.querySelector(".hangman").innerHTML = '<img src="assets/images/youwon.png">';	
 		}
 		// guess reaches 0
 		if (guesses == 0) {
-			answerReset();
 			losses++;
+			answerReset();
 			document.querySelector(".losses").innerHTML = losses;
 			document.querySelector(".hangman").innerHTML = '<img src="assets/images/youlost.png">';
 		}
 	}
 
 
+
+
+
+
+	function answerReset() {
+		// reset answer
+		document.querySelector(".response").innerHTML = "";
+		document.querySelector(".anykey").innerHTML = "";
+		
+		selectNewWord();
+	}
 
 	function answer() {
 
@@ -163,22 +173,10 @@ window.onload = function() {
 		}
 
 		document.querySelector(".guessLetter").addEventListener("click", function(){
-		    answerReset();
+				answerReset();
+		    
 		});
 	}
-
-	
-
-	function answerReset() {
-		// reset answer
-		document.querySelector(".response").innerHTML = "";
-
-		document.querySelector(".anykey").innerHTML = "";
-
-		selectNewWord();
-	}
-
-
 
 }
 
