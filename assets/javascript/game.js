@@ -4,7 +4,7 @@ window.onload = function() {
 	var words = ["ACCELERATE", "ACCIDENT", "ASPHALT", "AUTOMOBILE", "AVENUE", "BICYCLE", 
 								"BOULEVARD", "BRAKES", "BUS’", "CIRCLE", "CLUTCH", "CONSTRUCTION", 
 								"CARPOOL", "DETOUR", "DRIVE", "EMISSION", "EXHAUST", "EXIT", "EXPRESSWAY", 
-								"FAST", "FENDER", "FREEWAY", "FUEL", "GAS", "GEAR", "GPS", "GRIDLOCK", 
+								"FAST", "FENDER", "FREEWAY", "FUEL", "GAS", "GEAR", "GRIDLOCK", 
 								"HEADLIGHTS", "HYBRID", "INTERSECTION", "INTERSTATE", "IDLING", "LANE", 
 								"LICENSE", "LIGHTS", "MANUAL", "MAP", "MILE", "MERGE", "MOTOR", "MOTORCYCLE", 
 								"MPH", "OIL", "OVERPASS", "PARK", "PARKING", "PARKWAY", "PAVEMENT", "PEDAL", 
@@ -49,6 +49,7 @@ window.onload = function() {
 
 	function newWord(num) {
 		// set guesses
+		document.querySelector(".info").innerHTML = "";
 		guesses = 6;
 		document.querySelector(".guesses").innerHTML = guesses;
 		// hangman picture
@@ -83,6 +84,8 @@ window.onload = function() {
 
 	function checkGuessed(userGuess) {
 		// see if letter matches any letters in word
+
+
 		check: {
 			for (var i=0; i<guessedLetters.length; i++) {
 				if (guessedLetters[i] == userGuess) {
@@ -146,11 +149,12 @@ window.onload = function() {
 		// guess reaches 0
 		if (guesses == 0) {
 			losses++;
-			answerReset();
 			document.querySelector(".losses").innerHTML = losses;
 			document.querySelector(".hangman").innerHTML = '<img src="assets/images/youlost.png">';
-			document.querySelector(".response").innerHTML = "the word was: " + words[num];
+			document.querySelector(".response").innerHTML = "the word was: " + words[num] + "<br> press enter to continue";
+			answerReset();
 		}
+	
 	}
 
 
@@ -160,9 +164,9 @@ window.onload = function() {
 
 	function answerReset() {
 		// reset answer
-		document.querySelector(".response").innerHTML = "";
+		//document.querySelector(".response").innerHTML = "";
 		document.querySelector(".anykey").innerHTML = "";
-		
+		document.querySelector(".info").innerHTML = "";
 		selectNewWord();
 	}
 
@@ -174,7 +178,9 @@ window.onload = function() {
 		}
 
 		document.querySelector(".guessLetter").addEventListener("click", function(){
+				
 				answerReset();
+
 		    
 		});
 	}
