@@ -149,6 +149,7 @@ window.onload = function() {
 			answerReset();
 			document.querySelector(".losses").innerHTML = losses;
 			document.querySelector(".hangman").innerHTML = '<img src="assets/images/youlost.png">';
+			document.querySelector(".response").innerHTML = "the word was: " + words[num];
 		}
 	}
 
