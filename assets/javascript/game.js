@@ -31,8 +31,8 @@ window.onload = function() {
 	var num = 0;
 	newWord(num);
 
-	var audio = new Audio('assets/images/holidayRoad.mp3');
-	audio.play();
+	// var audio = new Audio('assets/images/holidayRoad.mp3');
+	// audio.play();
 
 
 
